@@ -39,13 +39,13 @@ It demonstrates core ML operations like dataset generation, dimensionality reduc
 
 
 ## 🖥️ Example Output
-random point generation
+### random point generation
 <img width="1476" height="844" alt="Screenshot 2025-11-01 180952" src="https://github.com/user-attachments/assets/86fd774d-0919-4083-8692-73fb2cbb900d" />
 
-cluster formation
+### cluster formation
 <img width="1535" height="859" alt="Screenshot 2025-11-01 180932" src="https://github.com/user-attachments/assets/c3256b75-81a7-4797-a57b-5e05bf5712df" />
 
-polynomial regresion plot
+### polynomial regresion plot
 <img width="1553" height="865" alt="Screenshot 2025-11-01 180903" src="https://github.com/user-attachments/assets/4f49663e-77e4-4ce1-8c9b-15037c0c8a0e" />
 
 
