@@ -1,76 +1,53 @@
-🧠 JavaML – Machine Learning Visualizer in Java (Swing + AWT)
+# JavaML – Machine Learning Playground in Java
 
-JavaML is a lightweight visual machine learning and data visualization framework built entirely using Java Swing and AWT.
-It provides interactive visualizations for:
+This project is a custom-built **Machine Learning Visualization Framework** written entirely in **Java (AWT + Swing)**.  
+It demonstrates core ML operations like dataset generation, dimensionality reduction (PCA, UMAP), clustering, and polynomial regression — all visualized graphically.
 
-Random point generation
-2D & 3D plotting
-Polynomial regression (with live curve fitting)
-K-Means–style clustering visualization
+---
 
-🚀 Features
-🧩 1. Random Point Generator
-Generates multi-dimensional points with customizable:
-Outer and inner list sizes
-Value range (minRange, maxRange)
-Dimensions (2D, 3D, n-D)
+## 🚀 Features
+- Random multi-dimensional dataset generation
+- Polynomial feature expansion
+- PCA & UMAP dimensionality reduction
+- K-means-style clustering visualization
+- Polynomial regression model training & plotting
+- 2D and 3D visualization using AWT/Swing
+- Supports arbitrary dataset sizes and dimensions
 
-ArrayList<ArrayList<float[]>> data = RandomPointGenerator(3, 50, 2, -10, 10);
+---
 
-📈 2. 2D Plot Visualization
-Plots 2D clusters or datasets inside a Swing JFrame window.
+## ⚙️ Demonstrated Functions
 
-JavaML.plot(dataset);
+| Function | Description |
+|-----------|--------------|
+| `RandomPointGenerator(int outerSize, int innerSize, int dimensions, float minRange, float maxRange)` | Generates random clustered points |
+| `expandPolynomialFeatures(dataset, degree)` | Expands dataset features to higher-degree polynomial terms |
+| `PCA(dataset, numComponents)` | Performs Principal Component Analysis for dimensionality reduction |
+| `UMAP(dataset, numComponents, nNeighbors)` | Applies UMAP for non-linear dimensionality reduction |
+| `Clustering(inputPoints, numberOfClusters)` | Groups points into clusters |
+| `TrainPolynomialRegressionModel(dataset, degree, learningRate, iterations)` | Trains regression coefficients |
+| `plotRegression(dataset, coeff)` | Plots regression results |
+| `Plot3D(dataset)` | Displays 3D scatter plot |
+| `plot(result)` | General-purpose 2D plotter |
+| `printCluster(result)` | Prints clusters to console |
+| `printFloatArrayList(list)` | Prints individual float arrays for debugging |
 
-Automatically scales axes
-Uses distinct colors for different clusters
-Supports live rendering of points
+---
 
-🧊 3. 3D Plot Visualization
-Projects 3D points with grid and labeled axes.
-
-JavaML.Plot3D(dataset);
-
-3D-like perspective drawn using 2D transformations
-Displays X, Y, Z axes with ticks and labeled values
-Visually appealing orange data points on a gray plane
-
-📉 4. Polynomial Regression
-Train and visualize multi-degree regression models using gradient descent.
-
-ArrayList<Float> coeff = TrainPolynomialRegressionModel(dataset, degree, learningRate, iterations);
-JavaML.plotRegression(dataset, coeff);
-
-Supports any polynomial degree
-Visualizes regression curve in magenta over dataset
-Automatic scaling for axes
-Displays ticks and axis labels dynamically
-
-🎯 5. K-Means–Style Clustering
-Groups input points into k clusters and visualizes the result.
-
-ArrayList<ArrayList<float[]>> clustered = Clustering(data, 3);
-JavaML.plot(clustered);
-
-Automatically assigns colors to each cluster
-Uses Euclidean distance
-Dynamically updates centroids until convergence
+## 🧩 How the Demo Works
+<img width="637" height="490" alt="Screenshot 2025-11-01 180632" src="https://github.com/user-attachments/assets/124e1553-a896-4fa1-b4a8-ece32ce0e45b" />
 
 
-🖥️ Tech Stack
-Language: Java
-GUI: Swing & AWT
+## 🖥️ Example Output
+random point generation
+<img width="1476" height="844" alt="Screenshot 2025-11-01 180952" src="https://github.com/user-attachments/assets/86fd774d-0919-4083-8692-73fb2cbb900d" />
 
-Core Concepts:
-Gradient Descent
-K-Means Clustering
-Polynomial Regression
-2D/3D Visualization
+cluster formation
+<img width="1535" height="859" alt="Screenshot 2025-11-01 180932" src="https://github.com/user-attachments/assets/c3256b75-81a7-4797-a57b-5e05bf5712df" />
 
-📜 License
-This project is open-source and free to use for educational or experimental purposes.
+polynomial regresion plot
+<img width="1553" height="865" alt="Screenshot 2025-11-01 180903" src="https://github.com/user-attachments/assets/4f49663e-77e4-4ce1-8c9b-15037c0c8a0e" />
 
-👤 Author
-Developed by: Tanmay
-Branch: Electronics and Communication Engineering (ECE)
-Focus: Machine Learning + Visualization + Algorithms
+
+
+
