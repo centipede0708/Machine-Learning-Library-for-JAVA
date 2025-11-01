@@ -1,160 +1,84 @@
-JavaML: Lightweight ML & Plotting Library
-JavaML is a lightweight, pure Java library for basic machine learning tasks and data visualization. It is written from scratch with no external dependencies beyond the standard Java AWT and Swing libraries.
+JavaML: A Simple ML & Plotting Library
+A lightweight, zero-dependency Java library for basic machine learning algorithms (K-Means, Polynomial Regression) and 2D/3D data visualization, built from scratch using only Java AWT and Swing.
 
-This library provides simple implementations of common algorithms, making it a useful tool for learning or for projects where external dependencies are not desired.
+This project is intended for educational purposes, demonstrating how ML algorithms and plotting tools can be implemented from the ground up without any external dependencies.
 
 Features
-Data Generation: Create random multi-dimensional datasets for testing.
+K-Means Clustering: Implements the K-Means clustering algorithm for n-dimensional data.
 
-Clustering: K-Means clustering algorithm.
+Polynomial Regression: Trains a multi-degree polynomial regression model using gradient descent.
 
-Regression: Polynomial regression trained with gradient descent.
+Data Generation: Includes a RandomPointGenerator to create test datasets with specified dimensions and ranges.
 
-Dimensionality Reduction: Principal Component Analysis (PCA).
+2D/3D Plotting: Uses Java Swing to render data in 2D and 3D.
 
-Plotting: Built-in 2D and 3D data visualization tools using Java Swing.
+Scatter plots for clustered data (with automatic coloring).
 
-2D scatter plots for clusters.
+Scatter plots with a fitted regression curve.
 
-2D scatter plots with regression curves.
+Basic 3D scatter plots with simple axis.
 
-Basic 3D scatter plots.
+Dimensionality Reduction: Contains a partial implementation of Principal Component Analysis (PCA).
 
 Setup
-Since this is a single-file library, you can directly include the JavaML.java file in your project.
+This is a single-file library. To use it, simply download JavaML.java and add it to your project.
 
-You will need a Java Development Kit (JDK) 8 or higher to compile and run the code.
+Requirements:
 
-API & Usage
-Here are the main public methods available in the JavaML class.
+Java Development Kit (JDK) 8 or higher.
 
+How to Use
+Below are examples of how to use the main features of the library. You can run this code in your own main method.
+
+Example 1: K-Means Clustering
+This example generates 3 distinct groups of 2D points, combines them, and then uses the Clustering algorithm to find the original groups.
+
+Generate 3 separate clusters of 50 points each.
+
+Combine them into one dataset.
+
+Run the K-Means algorithm with K=3.
+
+Plot the results in a new window.
+
+Example 2: Polynomial Regression
+This example generates noisy quadratic data (y = 0.5x^2 - x + 2 + noise) and then fits a 2nd-degree polynomial to it.
+
+Generate 100 random (x, y) points.
+
+Create a quadratic relationship (e.g., y = (0.5f * x * x) - x + 2.0f + noise).
+
+Train the model to find the coefficients for a 2nd-degree polynomial.
+
+Plot the data points and the fitted regression curve.
+
+API Overview
 Data Generation
-RandomPointGenerator Generates a nested ArrayList of random, multi-dimensional points.
+RandomPointGenerator(int outerSize, int innerSize, int dimensions, float minRange, float maxRange): Generates a list of lists of random points.
 
-Java
+Clustering
+Clustering(ArrayList<ArrayList<float[]>> inputPoints, int numberOfClusters): Sorts input points into K clusters.
 
-public ArrayList<ArrayList<float[]>> RandomPointGenerator(
-    int outerSize,
-    int innerSize,
-    int dimensions,
-    float minRange,
-    float maxRange
-);
-Clustering (K-Means)
-Clustering Performs K-Means clustering on a dataset. It takes a list of points and returns a list of clusters.
+plot(ArrayList<ArrayList<float[]>> result): Opens a 2D Swing window to visualize the clusters.
 
-Java
+Regression
+TrainPolynomialRegressionModel(ArrayList<ArrayList<float[]>> dataset, int degree, float learningRate, int iterations): Returns an ArrayList<Float> of coefficients [w0, w1, w2, ...] for the polynomial y = w0 + w1*x + w2*x^2 + ....
 
-public static ArrayList<ArrayList<float[]>> Clustering(
-    ArrayList<ArrayList<float[]>> inputPoints,
-    int numberOfClusters
-);
-plot Visualizes the result of the clustering algorithm in a 2D scatter plot. Each cluster is assigned a different color.
+plotRegression(ArrayList<ArrayList<float[]>> dataset, ArrayList<Float> coeff): Opens a 2D Swing window to plot the original data and the regression curve.
 
-Java
+Plotting
+Plot3D(ArrayList<ArrayList<float[]>> dataset): Opens a 3D Swing window to visualize the dataset (uses the first 3 dimensions).
 
-public static void plot(ArrayList<ArrayList<float[]>> result);
-Polynomial Regression
-TrainPolynomialRegressionModel Trains a polynomial regression model using gradient descent. It returns an ArrayList of the learned coefficients (w0, w1, w2, ...).
+Dimensionality Reduction
+PCA(ArrayList<ArrayList<float[]>> dataset, int numComponents): Reduces the dimensionality of the dataset. Note: This implementation is incomplete as it depends on an un-implemented SVD method.
 
-Java
+Project Status & Limitations
+This project is a functional proof-of-concept for educational use. It is not intended for production environments.
 
-public static ArrayList<Float> TrainPolynomialRegressionModel(
-    ArrayList<ArrayList<float[]>> dataset,
-    int degree,
-    float learningRate,
-    int iterations
-);
-plotRegression Plots the original 2D dataset and the learned polynomial regression curve.
+Incomplete PCA: The PCA method is a stub and will not function without a complete implementation of computeSVD.
 
-Java
+No Optimizations: Algorithms are written for clarity, not performance.
 
-public static void plotRegression(
-    ArrayList<ArrayList<float[]>> dataset,
-    ArrayList<Float> coeff
-);
-Dimensionality Reduction (PCA)
-PCA Performs Principal Component Analysis to reduce the dimensionality of a dataset.
+Basic Plotting: The Swing plots are not interactive (no zoom, pan, or hover).
 
-Note: The SVD and covariance matrix calculations must be fully implemented for this to be functional.
-
-Java
-
-public ArrayList<ArrayList<float[]>> PCA(
-    ArrayList<ArrayList<float[]>> dataset,
-    int numComponents
-);
-3D Plotting
-Plot3D Renders a simple 3D scatter plot of the dataset in a new Swing window.
-
-Java
-
-public static void Plot3D(ArrayList<ArrayList<float[]>> dataset);
-Example
-Here's a simple main method to demonstrate how to use the library for clustering and regression.
-
-Java
-
-import java.util.ArrayList;
-
-public class Main {
-    public static void main(String[] args) {
-        JavaML ml = new JavaML();
-
-        // =========== K-Means Clustering Example ===========
-
-        // 1. Generate random data for clustering
-        // We'll create 3 distinct groups
-        ArrayList<ArrayList<float[]>> cluster1 = ml.RandomPointGenerator(1, 50, 2, 0.0f, 10.0f);
-        ArrayList<ArrayList<float[]>> cluster2 = ml.RandomPointGenerator(1, 50, 2, 20.0f, 30.0f);
-        ArrayList<ArrayList<float[]>> cluster3 = ml.RandomPointGenerator(1, 50, 2, 40.0f, 50.0f);
-
-        // Combine them into one dataset
-        ArrayList<ArrayList<float[]>> clusterDataset = new ArrayList<>();
-        clusterDataset.addAll(cluster1);
-        clusterDataset.addAll(cluster2);
-        clusterDataset.addAll(cluster3);
-
-        // 2. Perform clustering (K=3)
-        int k = 3;
-        ArrayList<ArrayList<float[]>> clusteredResult = JavaML.Clustering(clusterDataset, k);
-
-        // 3. Plot the cluster results
-        JavaML.plot(clusteredResult);
-        System.out.println("Displaying cluster plot...");
-
-
-        // =========== Polynomial Regression Example ===========
-
-        // 1. Generate data for regression (e.g., y = 0.5x^2 - 1x + 3 + noise)
-        ArrayList<ArrayList<float[]>> regData = ml.RandomPointGenerator(1, 100, 2, -10.0f, 10.0f);
-        ArrayList<float[]> points = regData.get(0);
-        for (float[] p : points) {
-            float x = p[0];
-            // Add noise
-            float noise = (float) (Math.random() * 8.0 - 4.0);
-            // y = 0.5x^2 - x + 3 + noise
-            p[1] = (0.5f * x * x) - (1.0f * x) + 3.0f + noise;
-        }
-
-        // 2. Train the model (degree 2)
-        ArrayList<Float> coefficients = JavaML.TrainPolynomialRegressionModel(
-            regData, 2, 0.001f, 10000
-        );
-
-        // 3. Plot the regression
-        JavaML.plotRegression(regData, coefficients);
-        System.out.println("Displaying regression plot...");
-    }
-}
-To-Do / Future Work
-Complete the SVD implementation for PCA.
-
-Implement the placeholder Reinforcement Learning section.
-
-Add more ML algorithms (e.g., Logistic Regression, SVM).
-
-Improve plotting capabilities (axis labels, legends, interactivity).
-
-License
-This project is open-source. Feel free to use, modify, and distribute it. (Consider adding a formal license like MIT or Apache 2.0).
+Basic UI: Plotting windows are basic JFrame instances. They might not close gracefully in all IDEs.
